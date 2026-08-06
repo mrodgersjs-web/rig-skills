@@ -164,3 +164,13 @@ MIT — see [LICENSE](LICENSE).
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md).
+
+## Note on GTM skills
+
+The `gtm/` category (rig-gtm-operations, rig-gtm-24-7-operations, rig-linkedin-ops) contains operational credentials (Telegram bot tokens, Google Ads API keys, Stripe keys, Apollo API keys) and is excluded from this public release. These skills are available on request with credentials scrubbed.
+
+## Stats
+
+- **120 files** across 8 categories (engines, doctrine, studios, engineering, fleet, knowledge, platform)
+- **GTM category excluded** — contains live operational credentials
+- PII-redacted: emails, phones, internal paths, network addresses scrubbed

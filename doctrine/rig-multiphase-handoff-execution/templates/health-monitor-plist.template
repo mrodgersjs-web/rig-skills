@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  launchd service template for a RIG health monitor.
+
+  Runs a 60-second loop that probes fleet reachability + runs the
+  dispatcher so the queue stays drained and the node registry stays
+  fresh. Separate from the per-node worker plist.
+
+  Install (one per control plane):
+    cp templates/health-monitor-plist.template \
+       ~/Library/LaunchAgents/com.rig.<area>-health-monitor.plist
+    sed -i '' "s|__AREA__|<area>|g" \
+       ~/Library/LaunchAgents/com.rig.<area>-health-monitor.plist
+    sed -i '' "s|__RUNTIME_DIR__|/absolute/path/to/runtime|" \
+       ~/Library/LaunchAgents/com.rig.<area>-health-monitor.plist
+    sed -i '' "s|__ENTRYPOINT__|<entrypoint-script-name>|g" \
+       ~/Library/LaunchAgents/com.rig.<area>-health-monitor.plist
+    launchctl load -w ~/Library/LaunchAgents/com.rig.<area>-health-monitor.plist
+-->
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.rig.__AREA__-health-monitor</string>
+
+    <key>ProgramArguments</key>
+    <array>
+        <string>__RUNTIME_DIR__/.venv/bin/__ENTRYPOINT__</string>
+        <string>--interval</string>
+        <integer>60</integer>
+    </array>
+
+    <key>WorkingDirectory</key>
+    <string>__RUNTIME_DIR__</string>
+
+    <key>EnvironmentVariables</key>
+    <dict>
+        <key>PATH</key>
+        <string>__RUNTIME_DIR__/.venv/bin:/Users/rig128gb/.local/bin:/usr/local/bin:/usr/bin:/bin</string>
+        <key>PYTHONUNBUFFERED</key>
+        <string>1</string>
+    </dict>
+
+    <key>RunAtLoad</key>
+    <true/>
+
+    <key>KeepAlive</key>
+    <dict>
+        <key>SuccessfulExit</key>
+        <false/>
+        <key>Crashed</key>
+        <true/>
+    </dict>
+
+    <key>ThrottleInterval</key>
+    <integer>10</integer>
+
+    <key>StandardOutPath</key>
+    <string>/Users/rig128gb/.rig/__AREA__/logs/health-monitor.out.log</string>
+
+    <key>StandardErrorPath</key>
+    <string>/Users/rig128gb/.rig/__AREA__/logs/health-monitor.err.log</string>
+
+    <key>ProcessType</key>
+    <string>Background</string>
+</dict>
+</plist>

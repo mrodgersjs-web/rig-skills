@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "run_id": "<dept>-daily-<YYYYMMDDHHMMSS>",
+  "agent": "<agent_id>",
+  "coordinate": "L4-D1-A3-I2",
+  "intent": "<one-sentence goal>",
+  "owner": "<dept_owner>",
+  "department": "<dept>",
+  "cycle": "<cycle_name>",
+  "timestamp": "<ISO-8601 UTC>",
+  "sources": {
+    "queue_file": "/Users/rig128gb/.rig/departments/queues/<dept>.json",
+    "scraped": [
+      {"path": "/Users/rig128gb/.rig/departments/<dept>/substrate/scraped/<slug>.raw", "sha256": "sha256:<HASH>", "bytes": 0}
+    ]
+  },
+  "artifacts": {
+    "entities": [
+      {"path": "/Users/rig128gb/.rig/departments/<dept>/substrate/entities/<name>.md", "sha256": "sha256:<HASH>", "bytes": 0}
+    ],
+    "patterns": [
+      {"path": "/Users/rig128gb/.rig/departments/<dept>/substrate/patterns/<slug>.md", "sha256": "sha256:<HASH>", "bytes": 0}
+    ],
+    "entity_count": 0,
+    "topic_count": 0,
+    "entity_bytes": 0,
+    "topic_bytes": 0
+  },
+  "freshness": {
+    "fresh_count": 0,
+    "fresh_pct": 1.0,
+    "pre_existing_count": 0,
+    "target_fresh_pct": 0.4,
+    "target_met": true
+  },
+  "compound": {
+    "compounded_total": 0,
+    "previous_today_count": 0,
+    "delta": 0
+  },
+  "blocklist": {
+    "check_passed": true,
+    "enforced": ["HED", "IdeaWake", "Anthony Langeweg", "hed-forge", "dec-1783268304352-va5c", "dec-1783268340018-db8f", "unredacted-private-transcripts"],
+    "hits": []
+  },
+  "gate": {
+    "blocklist_violations": 0,
+    "metric": "<verifier_metric>",
+    "verdict": "PASS",
+    "verifier": "<verifier_id>"
+  },
+  "remote_writes": {
+    "gbrain": "skipped (endpoint not exposed)",
+    "supabase": "skipped (no remote write path configured)",
+    "obsidian": {"path": "/Users/rig128gb/Documents/JakeStudio/Department PAI/<dept>/<YYYY-MM-DD>.md", "status": "written"}
+  },
+  "state_update": {
+    "path": "/Users/rig128gb/.rig/departments/<dept>/goals/_state.json",
+    "sha256": "sha256:<HASH>",
+    "today_count": 0,
+    "entities_written": 0,
+    "topics_written": 0
+  },
+  "verdict": "done = all(blocking_gates_pass) = TRUE",
+  "proof_hash": ""
+}

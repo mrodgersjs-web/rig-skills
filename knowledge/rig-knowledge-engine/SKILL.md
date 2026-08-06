@@ -1,0 +1,117 @@
+---
+name: rig-knowledge-engine
+description: "Per-department knowledge ingestion pipeline for RIG agents. Scrapes YouTube transcripts, arXiv papers, web content, and consensus.app for each of 12 department agents. Processes into Obsidian notes that auto-sync to GBrain. Use when building agent knowledge bases, scraping domain-specific reference material, or populating agent vaults with evidence."
+version: 1.0.0
+category: devops
+---
+
+# RIG Knowledge Ingestion Engine
+
+Per-department knowledge scraping that builds agent-specific knowledge bases. Each department gets YouTube transcripts, arXiv papers, web best practices, and consensus.app research synthesized into Obsidian notes that auto-sync to GBrain.
+
+## Distinction from rig-daily-scraper
+
+| | rig-daily-scraper | rig-knowledge-engine |
+|---|---|---|
+| **Purpose** | Vertical content monitoring | Agent knowledge building |
+| **Scope** | 8 industries + cross-vertical | 12 department agents |
+| **Output** | JSON in ~/scrape-test/ | Obsidian notes in Agent Vaults |
+| **Indexing** | None | GBrain auto-sync (5min) |
+| **Use case** | Market signal tracking | Agent output quality improvement |
+
+## Scripts
+
+- **Engine:** `~/bin/rig_department_knowledge_engine.py` — main scraper
+- **Cron runner:** `~/bin/rig_knowledge_cron_runner.py` — daily rotation (2 depts/day)
+- **Supabase push:** `~/bin/rig_supabase_push.py` — generate SQL for Supabase
+
+## Usage
+
+```bash
+# One department
+python3 ~/bin/rig_department_knowledge_engine.py --department darius
+
+# All departments
+python3 ~/bin/rig_department_knowledge_engine.py --department all
+
+# Specific sources only
+python3 ~/bin/rig_department_knowledge_engine.py --department iris --sources youtube,arxiv
+
+# Custom limits
+python3 ~/bin/rig_department_knowledge_engine.py --department steve --max-per-source 20
+```
+
+## Sources per Department
+
+Each department has curated queries for 4 source types:
+
+| Source | Tool | Content | Size/unit |
+|---|---|---|---|
+| YouTube | yt-dlp | Transcripts + metadata | 10-20KB/transcript |
+| arXiv | arxiv Python | Papers, abstracts | 50-500KB/paper |
+| Web | curl + HTML parse | Guides, best practices | 5-50KB/page |
+| Consensus | web_extract | Research synthesis | 5-10KB/answer |
+
+## Output Locations
+
+- **Raw content:** `~/rig-knowledge-raw/<department>/<source>/`
+- **Obsidian notes:** `~/Documents/JakeStudio/Agent Vaults/<agent>/Knowledge/<source>/`
+- **Ingestion ledger:** `~/rig-knowledge-raw/ingestion-ledger.jsonl`
+- **Daily logs:** `~/rig-knowledge-raw/daily-logs/`
+
+## Cron Schedule
+
+launchd: `~/Library/LaunchAgents/com.rig.knowledge-ingestion.plist`
+- Runs daily at 3am
+- Rotates 2 departments/day (6-day full cycle)
+- Weekdays: YouTube + arXiv (5 items/query)
+- Weekends: YouTube + arXiv + web + consensus (5 items/query)
+
+## Storage Math
+
+Per department (pilot data from Darius):
+- YouTube: ~25 notes × 15KB = 375KB processed, ~21MB raw
+- arXiv: ~40 papers × 2KB = 80KB (abstracts)
+- Web: ~30 pages × 20KB = 600KB
+- Consensus: ~10 answers × 5KB = 50KB
+- **Total processed: ~1.1MB/dept**
+- **Total raw: ~50MB/dept**
+- **12 departments: ~13MB processed, ~600MB raw**
+
+## QNAP Backup
+
+Bulk data backs up to QNAP via Tailscale SSH:
+
+```bash
+rsync -avz ~/rig-knowledge-raw/ qnap-ts:/share/ZFS532_DATA/rig-department-data/knowledge-raw/
+rsync -avz ~/Documents/JakeStudio/Agent\ Vaults/ qnap-ts:/share/ZFS532_DATA/rig-department-data/agent-vaults/
+```
+
+QNAP: `qnap-ts` (Tailscale, `nas94f2ae.tail4d96b3.ts.net`), 50TB+ free at `/share/ZFS532_DATA/`
+
+## Supabase Push
+
+Generate SQL for Supabase insertion:
+
+```bash
+python3 ~/bin/rig_supabase_push.py --dry-run  # Generate SQL only
+python3 ~/bin/rig_supabase_push.py --project-url <url> --api-key <key>  # Push
+```
+
+SQL file: `~/rig-knowledge-raw/supabase-push.sql`
+Tables: rig_knowledge_sources, rig_knowledge_notes, rig_department_goals, rig_department_teams, rig_ingestion_ledger
+
+## GBrain Integration
+
+GBrain auto-syncs from Obsidian every 5 minutes via `com.rig.gbrain-sync` daemon. No manual push needed. Notes written to Agent Vaults/Knowledge/ are automatically searchable by all agents within 5 minutes.
+
+## Pitfalls
+
+- **67GB free locally.** 12 departments × 50MB raw = 600MB fits. Don't try 5GB/dept locally — use QNAP for bulk.
+- **Many YouTube videos lack English transcripts.** Pilot: 108 videos scraped, 25 had transcripts. Expect ~25% yield on transcript extraction.
+- **arXiv Python package must be installed.** `pip3 install arxiv feedparser`
+- **Rate limiting.** 1-second delay between YouTube queries, 0.5s between web requests. Don't remove these.
+- **Content quality varies.** Web scraping produces noise. The Obsidian notes include raw content — agents should be instructed to quality-filter before citing.
+- **Cron re-fire with same-day file already exists → write a non-destructive companion, never overwrite.** Scheduled research/output jobs (e.g. `topic-researcher` 4am daily cron) routinely re-fire later the same day, or the file is generated by a parallel agent. If `<artifact>_{date}.json` already exists in the proof/daily path, do NOT overwrite it. Instead write `<artifact>_{date}_pass{N}.json` and include a `predecessor` field in the new file pointing to the prior pass + a `non_overlap_check` line listing the source set used by each pass. Both files then remain available to the writer agent and downstream pipeline. Validated by the ralf-department topic-researcher on 2026-07-06 (pass 1 at 04:00, pass 2 at 16:23 → 20 candidate topics for the week instead of 10).
+- **Placeholder numbers in research output must be tagged in a `fabrication_flags` section.** When a daily research artifact includes specific numbers (e.g. "8 of 10 engagements," "$48K/year," "312 ProofPackets/quarter") that the writer agent would publish, those numbers must either be tied to a real ledger/case-study or be flagged as placeholders that require validation before drafting. Schema: `{"fabrication_flags": {"<topic_id>": "<what needs to be verified and where to look>"}}`. This satisfies Mike's standing no-fabrication rule from `mike_preferences.json` without forcing the researcher to invent a real number when none exists yet.
+- **Source-set non-overlap verification is required when generating a pass-2 companion.** Before writing a new pass, read the existing pass's `sources_scanned` block and confirm at least 60% of the new pass's sources are not in the prior pass. State the verification in a `non_overlap_check` field in the new file. This stops the cron from quietly re-generating the same 10 topics with slightly different wording and polluting the candidate pool with near-duplicates.

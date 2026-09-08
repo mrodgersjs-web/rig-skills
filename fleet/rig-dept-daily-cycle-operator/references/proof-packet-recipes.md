@@ -16,9 +16,9 @@ The ProofPacket is the sealed audit trail at `~/.rig/state/<dept>-daily-proof-<c
   "cycle": "<cycle_name>",
   "timestamp": "<ISO-8601 UTC>",
   "sources": {
-    "queue_file": "/Users/rig128gb/.rig/departments/queues/<dept>.json",
+    "queue_file": "$HOME/.rig/departments/queues/<dept>.json",
     "scraped": [
-      {"path": "/Users/rig128gb/.rig/departments/<dept>/substrate/scraped/<slug>.raw", "sha256": "sha256:...", "bytes": 0}
+      {"path": "$HOME/.rig/departments/<dept>/substrate/scraped/<slug>.raw", "sha256": "sha256:...", "bytes": 0}
     ]
   },
   "artifacts": {
@@ -55,10 +55,10 @@ The ProofPacket is the sealed audit trail at `~/.rig/state/<dept>-daily-proof-<c
   "remote_writes": {
     "gbrain": "ok | skipped (endpoint not exposed)",
     "supabase": "ok | skipped (no remote write path configured)",
-    "obsidian": {"path": "/Users/rig128gb/Documents/JakeStudio/Department PAI/<dept>/<YYYY-MM-DD>.md", "status": "written"}
+    "obsidian": {"path": "$HOME/Documents/JakeStudio/Department PAI/<dept>/<YYYY-MM-DD>.md", "status": "written"}
   },
   "state_update": {
-    "path": "/Users/rig128gb/.rig/departments/<dept>/goals/_state.json",
+    "path": "$HOME/.rig/departments/<dept>/goals/_state.json",
     "sha256": "sha256:...",
     "today_count": N,
     "entities_written": N,
@@ -84,7 +84,7 @@ If you `json.dump(..., indent=2)`, the whitespace is part of the bytes. Canonica
 ```python
 import json, hashlib, copy
 
-p = "/Users/rig128gb/.rig/state/<dept>-daily-proof-<cycle>.json"
+p = "$HOME/.rig/state/<dept>-daily-proof-<cycle>.json"
 with open(p) as f:
     d = json.load(f)
 
@@ -133,7 +133,7 @@ H=$(shasum -a 256 <file> | awk '{print $1}')
 # Build JSON array of entity hashes
 ENT_ARR="["
 FIRST=1
-for f in /Users/rig128gb/.rig/departments/<dept>/substrate/entities/*compound-<TS>.md; do
+for f in $HOME/.rig/departments/<dept>/substrate/entities/*compound-<TS>.md; do
   H=$(shasum -a 256 "$f" | awk '{print $1}')
   B=$(wc -c < "$f" | tr -d ' ')
   if [ $FIRST -eq 0 ]; then ENT_ARR="${ENT_ARR},"; fi
@@ -152,7 +152,7 @@ For the proof_hash computation itself, `python3 -c "..."` works:
 ```bash
 PROOF_HASH=$(python3 -c "
 import json, hashlib
-p = '/Users/rig128gb/.rig/state/<dept>-daily-proof-<cycle>.json'
+p = '$HOME/.rig/state/<dept>-daily-proof-<cycle>.json'
 with open(p) as f: d = json.load(f)
 d.pop('proof_hash', None)
 canonical = json.dumps(d, sort_keys=True, separators=(',', ':')).encode()
@@ -165,7 +165,7 @@ Then patch it back into the file:
 ```bash
 python3 -c "
 import json
-p = '/Users/rig128gb/.rig/state/<dept>-daily-proof-<cycle>.json'
+p = '$HOME/.rig/state/<dept>-daily-proof-<cycle>.json'
 with open(p) as f: d = json.load(f)
 d['proof_hash'] = 'sha256:$PROOF_HASH'
 with open(p, 'w') as f: json.dump(d, f, indent=2, sort_keys=True)

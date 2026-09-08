@@ -37,10 +37,10 @@ while [[ $# -gt 0 ]]; do
 done
 
 # Locate the venv python (always the venv, never the Xcode toolchain)
-VENV_PY="/Users/rig128gb/Developer/rig-intelligence/platform/founder-runtime/.venv/bin/python"
+VENV_PY="$HOME/Developer/rig-intelligence/platform/founder-runtime/.venv/bin/python"
 [[ -f "$VENV_PY" ]] || { echo "venv python missing at $VENV_PY" >&2; exit 2; }
 
-cd "/Users/rig128gb/Developer/rig-intelligence/platform/founder-runtime"
+cd "$HOME/Developer/rig-intelligence/platform/founder-runtime"
 
 echo "=== 1. canonical pytest ==="
 "$VENV_PY" -m pytest "${MODULE}/tests/" -q

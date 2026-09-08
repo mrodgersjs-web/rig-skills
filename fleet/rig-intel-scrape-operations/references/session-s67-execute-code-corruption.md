@@ -7,7 +7,7 @@ Cron job: `rig-intel-scrape`. Model: GLM-5.2. Skills `gbrain` + `rig-scrape` ski
 ## What Happened
 
 ### Phase 1: Knowledge Context (failed)
-- `rig-knowledge` binary not on PATH. `rig-knowledge-pipeline` exists at `/Users/rig128gb/.rig/bin/` but hangs on invocation (timeout after 7.62s).
+- `rig-knowledge` binary not on PATH. `rig-knowledge-pipeline` exists at `$HOME/.rig/bin/` but hangs on invocation (timeout after 7.62s).
 - Fell back to GBrain MCP tools (`mcp__gbrain__query`, `mcp__gbrain__search`, `mcp__gbrain__get_recent_salience`).
 
 ### Phase 2: GBrain Scan (5 MCP calls)

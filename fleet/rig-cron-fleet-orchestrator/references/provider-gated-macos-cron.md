@@ -9,7 +9,7 @@ Distinct from the multi-node LLM fleet crons described in SKILL.md §"Quick deci
 - Execute at most **one approved action per invocation** behind a sealed approval capsule.
 - Emit a **sanitized ProofPacket** (no `Authorization`, no bearer, no API key — ever).
 
-Canonical examples: the Jacob X Account Engine cron (`/Users/rig128gb/Developer/RIGForge/repos/jabobs-x-account/scripts/jacob-x-cron-runner.sh`), any future local action cron that talks to X / Postiz / Stripe / Twilio / GitHub Apps on behalf of one specific account.
+Canonical examples: the Jacob X Account Engine cron (`$HOME/Developer/RIGForge/repos/jabobs-x-account/scripts/jacob-x-cron-runner.sh`), any future local action cron that talks to X / Postiz / Stripe / Twilio / GitHub Apps on behalf of one specific account.
 
 ## When this fits
 

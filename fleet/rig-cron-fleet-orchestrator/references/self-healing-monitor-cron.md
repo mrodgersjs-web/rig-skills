@@ -32,7 +32,7 @@ Each monitor writes its own alert/incident file. The master proof rolls them up.
 
 **`hermes cron status <id>` does not exist** — positional IDs raise `unrecognized arguments`.
 
-**The source of truth is `/Users/rig128gb/.hermes/cron/jobs.json`** — every cron job is a dict with the full schema:
+**The source of truth is `$HOME/.hermes/cron/jobs.json`** — every cron job is a dict with the full schema:
 
 ```json
 {
@@ -66,7 +66,7 @@ python3 /tmp/inspect_jobs.py --ids 4ca73ece55fa,b6cba84bd3f3,... > /tmp/cron_sta
 import json, sys
 from pathlib import Path
 ids = set(sys.argv[1].split(",")) if "--ids" in sys.argv else None
-data = json.loads(Path("/Users/rig128gb/.hermes/cron/jobs.json").read_text())
+data = json.loads(Path("$HOME/.hermes/cron/jobs.json").read_text())
 out = []
 for j in data.get("jobs", []):
     if ids and j.get("id") not in ids:
@@ -156,9 +156,9 @@ The cron prompt usually names a path like `out/ads/proof-packet.json` but the ca
 ```python
 import os, glob
 candidates = [
-    "/Users/rig128gb/Developer/rig-gtm-studio-v2/out/ads",
-    "/Users/rig128gb/Developer/rig-os-agency/out/ads",
-    "/Users/rig128gb/out/ads",
+    "$HOME/Developer/rig-gtm-studio-v2/out/ads",
+    "$HOME/Developer/rig-os-agency/out/ads",
+    "$HOME/out/ads",
 ]
 exists = [c for c in candidates if os.path.isdir(c)]
 ```
@@ -183,7 +183,7 @@ For O6 (atlas), just `os.path.exists()` + `os.path.getsize()` + `os.path.getmtim
 **The rolling history log (`monitor-history.log`) is one-line-per-cycle and is appended.** Using `write_file` to "update" it destroys the tail you didn't observe. Always use `terminal` with `cat >> file` to append, never `write_file` on a log you're appending to.
 
 ```bash
-echo "$(date +%H:%M) cycle=${CYCLE} monitor=ok o1=${O1} o2=${O2} ..." >> /Users/rig128gb/.rig/state/monitor-history.log
+echo "$(date +%H:%M) cycle=${CYCLE} monitor=ok o1=${O1} o2=${O2} ..." >> $HOME/.rig/state/monitor-history.log
 ```
 
 If you accidentally overwrite (e.g. read with offset/limit, then write_file the wrong contents): restore from a known-good cycle log (every cycle writes a full `monitor-cycle-{ts}.log`), reconstruct the line for the prior cycle, append a `# NOTE: tail lost on cycle-N overwrite` comment, then continue.
@@ -247,9 +247,9 @@ After writing the master proof, re-read it and check:
 
 A scheduled cron every 15 minutes that monitors 5 sprint crons + 6 outcomes + 1 blocklist:
 
-1. Read `/Users/rig128gb/.rig/state/36h-goal-active.yaml` and `/Users/rig128gb/.hermes/jake/jake-active-goal-2026-07-05.json` to get active window + cron IDs + outcomes
-2. Read `/Users/rig128gb/.hermes/cron/jobs.json` for each of 5 cron IDs → get last_run_at, last_status, provider, model
-3. Read `/Users/rig128gb/.rig/state/36h-goal-proof.json` for previous cycle (cycle N-1)
+1. Read `$HOME/.rig/state/36h-goal-active.yaml` and `$HOME/.hermes/jake/jake-active-goal-2026-07-05.json` to get active window + cron IDs + outcomes
+2. Read `$HOME/.hermes/cron/jobs.json` for each of 5 cron IDs → get last_run_at, last_status, provider, model
+3. Read `$HOME/.rig/state/36h-goal-proof.json` for previous cycle (cycle N-1)
 4. Compute ages at `now`
 5. M1: write per-cron stall or clear alert files
 6. M2: write m2-drift-detected.log (or fixed log if auto-fix applied)

@@ -71,7 +71,7 @@ For each high-priority, non-duplicate item:
 **L10 Modules:**
 - Load template from `templates/l10-module-template.py.md`
 - Implement core algorithm with tests
-- Write to `/Users/rig128gb/rig-l10/src/{module_name}/`
+- Write to `$HOME/rig-l10/src/{module_name}/`
 - Add to L10 CLI registration
 
 ### Step 5: Index in GBrain

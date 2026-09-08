@@ -29,7 +29,7 @@ When Mike says "chart a map" or "let's plan this out" with no other context, the
 - Survives across all 3 Hermes profiles (default/work/play)
 - Git-diffable for audit
 - No dependency on GBrain/Postgres being up
-- Co-locates with the artifact (e.g., `WAYFINDER_MAP.md` next to the council pack in `/Users/rig128gb/buzz/examples/council-core/`)
+- Co-locates with the artifact (e.g., `WAYFINDER_MAP.md` next to the council pack in `$HOME/buzz/examples/council-core/`)
 - The user can `cat` it from any terminal session
 
 Map file template (proven in 2026-07-30 Council Core map):
@@ -206,4 +206,4 @@ If any of these fail, fix the map before claiming a ticket. Bad maps produce bad
 
 ## Real-World Reference
 
-- **2026-07-30 Council Core map** at `/Users/rig128gb/buzz/examples/council-core/WAYFINDER_MAP.md` — produced Ticket 2 (Council Core pack), Ticket 1 (map setup), and proved the operator-override protocol when Mike asked for Ticket 4 in the same session.
+- **2026-07-30 Council Core map** at `$HOME/buzz/examples/council-core/WAYFINDER_MAP.md` — produced Ticket 2 (Council Core pack), Ticket 1 (map setup), and proved the operator-override protocol when Mike asked for Ticket 4 in the same session.

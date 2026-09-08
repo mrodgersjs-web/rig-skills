@@ -79,10 +79,10 @@ audits diff against this one.
     "no >$5K spend",
     "can only send to armed contacts in send-queue-verified.json"
   ],
-  "audit_log_path": "/Users/rig128gb/.rig/departments/gtm/audit/darius-actions-2026-07.jsonl",
+  "audit_log_path": "$HOME/.rig/departments/gtm/audit/darius-actions-2026-07.jsonl",
   "status": "ACTIVE",
   "directive_source": "Mike: 'Darius has to approve gtm efforts.'",
-  "authority_doc": "/Users/rig128gb/.rig/departments/gtm/DARIUS-AUTHORITY.md",
+  "authority_doc": "$HOME/.rig/departments/gtm/DARIUS-AUTHORITY.md",
   "hard_blocks": {
     "HED_account": "any HED / IdeaWake / Anthony Langeweg / hed-forge / dec-1783268304352-va5c / dec-1783268340018-db8f payload → quarantine",
     "public_brand_artifact": "Theo owns; veto authority",
@@ -108,8 +108,8 @@ legal hook.
 import json, os, tempfile, shutil
 from datetime import datetime, timezone
 
-QUEUE = '/Users/rig128gb/Developer/rig-gtm-studio-v2/outbound/send-queue-verified.json'
-AUDIT = '/Users/rig128gb/.rig/departments/gtm/audit/darius-actions-2026-07.jsonl'
+QUEUE = '$HOME/Developer/rig-gtm-studio-v2/outbound/send-queue-verified.json'
+AUDIT = '$HOME/.rig/departments/gtm/audit/darius-actions-2026-07.jsonl'
 
 with open(QUEUE) as f:
     data = json.load(f)

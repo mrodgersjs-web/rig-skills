@@ -58,7 +58,7 @@ Run this weekly to catch breakage before the crons do:
 python3 -c "
 import json
 from pathlib import Path
-jobs = json.loads(Path('/Users/rig128gb/.hermes/cron/jobs.json').read_text())['jobs']
+jobs = json.loads(Path('$HOME/.hermes/cron/jobs.json').read_text())['jobs']
 broken = [j for j in jobs if j.get('last_status') == 'error']
 for j in broken:
     print(f\"{j['id']} | {j['name']} | provider={j.get('provider')} | model={j.get('model')} | err={j.get('last_error','')[:60]}\")
@@ -72,7 +72,7 @@ In one session the `cronjob` binary wasn't on PATH. **The fallback is to edit `~
 ```python
 import json
 from pathlib import Path
-p = Path("/Users/rig128gb/.hermes/cron/jobs.json")
+p = Path("$HOME/.hermes/cron/jobs.json")
 data = json.loads(p.read_text())
 for j in data["jobs"]:
     if j.get("id") == "your-cron-id":

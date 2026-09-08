@@ -12,7 +12,7 @@ available or when you want to pin many crons at once.
 import json, socket, urllib.request
 from pathlib import Path
 
-JOBS_PATH = Path("/Users/rig128gb/.hermes/cron/jobs.json")
+JOBS_PATH = Path("$HOME/.hermes/cron/jobs.json")
 
 # Update this dict when you add/remove nodes. Format:
 # provider_name: (ip, port, default_model, [all_loaded_models])

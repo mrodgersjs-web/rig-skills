@@ -26,7 +26,7 @@ This umbrella owns the **artifact schema and the workflow**, not the source-spec
 Every intake drops the following into:
 
 ```
-/Users/rig128gb/.rig/departments/{dept}/substrate/raw/intake-YYYY-MM-DD/{slug}/
+$HOME/.rig/departments/{dept}/substrate/raw/intake-YYYY-MM-DD/{slug}/
 ├── {video_or_source_id}.{ext}         # raw input (yt-dlp output, untouched)
 ├── {video_or_source_id}.info.json      # raw metadata dump (untouched)
 ├── transcript.txt                      # cleaned plain text (when applicable)

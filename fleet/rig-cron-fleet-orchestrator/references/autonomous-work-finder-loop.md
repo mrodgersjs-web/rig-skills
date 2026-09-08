@@ -17,7 +17,7 @@ The autonomous work-finder loop is a recurring cron (every 45m, delivers to Tele
 import json
 from pathlib import Path
 
-data = json.loads(Path("/Users/rig128gb/.hermes/cron/jobs.json").read_text())
+data = json.loads(Path("$HOME/.hermes/cron/jobs.json").read_text())
 jobs = data.get("jobs", data if isinstance(data, list) else [])
 enabled = [j for j in jobs if j.get("enabled", True)]
 ok = [j for j in enabled if j.get("last_status") == "ok"]

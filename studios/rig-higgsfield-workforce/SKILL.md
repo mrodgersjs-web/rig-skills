@@ -18,7 +18,7 @@ category: rig-operations
 
 ## Architecture
 Two-tier model: RIG Local Control Plane (Tier 1) + Higgsfield Supercomputer (Tier 2).
-Connected via Higgsfield CLI at `/Users/rig128gb/.hermes/node/bin/higgsfield`.
+Connected via Higgsfield CLI at `$HOME/.hermes/node/bin/higgsfield`.
 
 ## Account
 - **Email:** [REDACTED-EMAIL]
@@ -96,7 +96,7 @@ Credits: ~40-60 per run
 
 ## Direct CLI Usage
 ```bash
-HF="/Users/rig128gb/.hermes/node/bin/higgsfield"
+HF="$HOME/.hermes/node/bin/higgsfield"
 
 # Generate a single image
 $HF generate create nano_banana_2 --prompt "your prompt" --json

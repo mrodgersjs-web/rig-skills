@@ -87,7 +87,7 @@ Key changes found:
 
 - `IntelPacket-S90-GTM-INTEL.md` (9.6KB) — full markdown packet
 - `IntelPacket-S90-GTM-INTEL.json` (1.4KB) — programmatic summary
-- Workdir: `/Users/rig128gb/Documents/JakeStudio/Projects/control-plane/meta-harness/`
+- Workdir: `$HOME/Documents/JakeStudio/Projects/control-plane/meta-harness/`
 
 ## Pipeline Status (unchanged from C48)
 

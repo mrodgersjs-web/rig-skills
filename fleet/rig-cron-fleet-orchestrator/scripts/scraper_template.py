@@ -13,7 +13,7 @@ import argparse, json, urllib.request, urllib.error, time, os
 from pathlib import Path
 from datetime import datetime, timezone
 
-DEPT_BASE = Path(os.environ.get("RIG_DEPT_BASE", "/Users/rig128gb/.rig/departments"))
+DEPT_BASE = Path(os.environ.get("RIG_DEPT_BASE", "$HOME/.rig/departments"))
 
 # Hard blocklist — DO NOT REMOVE
 GLOBAL_BLOCKLIST = ["HED", "IdeaWake", "dec-1783268304352-va5c", "dec-1783268340018-db8f",
@@ -128,8 +128,8 @@ def scrape_sources(dept_id: str, sources: list, cycle_label: str = "scraper-cycl
         "blocklist_hits": len(blocklist_hits),
         "total_bytes": total_bytes,
     }
-    Path("/Users/rig128gb/.rig/state").mkdir(parents=True, exist_ok=True)
-    Path(f"/Users/rig128gb/.rig/state/{dept_id}-scraper-proof.json").write_text(
+    Path("$HOME/.rig/state").mkdir(parents=True, exist_ok=True)
+    Path(f"$HOME/.rig/state/{dept_id}-scraper-proof.json").write_text(
         json.dumps(proof, indent=2))
 
     return {"dept": dept_id, "results": results, "proof": proof}

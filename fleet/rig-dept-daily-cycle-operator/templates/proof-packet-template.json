@@ -9,17 +9,17 @@
   "cycle": "<cycle_name>",
   "timestamp": "<ISO-8601 UTC>",
   "sources": {
-    "queue_file": "/Users/rig128gb/.rig/departments/queues/<dept>.json",
+    "queue_file": "$HOME/.rig/departments/queues/<dept>.json",
     "scraped": [
-      {"path": "/Users/rig128gb/.rig/departments/<dept>/substrate/scraped/<slug>.raw", "sha256": "sha256:<HASH>", "bytes": 0}
+      {"path": "$HOME/.rig/departments/<dept>/substrate/scraped/<slug>.raw", "sha256": "sha256:<HASH>", "bytes": 0}
     ]
   },
   "artifacts": {
     "entities": [
-      {"path": "/Users/rig128gb/.rig/departments/<dept>/substrate/entities/<name>.md", "sha256": "sha256:<HASH>", "bytes": 0}
+      {"path": "$HOME/.rig/departments/<dept>/substrate/entities/<name>.md", "sha256": "sha256:<HASH>", "bytes": 0}
     ],
     "patterns": [
-      {"path": "/Users/rig128gb/.rig/departments/<dept>/substrate/patterns/<slug>.md", "sha256": "sha256:<HASH>", "bytes": 0}
+      {"path": "$HOME/.rig/departments/<dept>/substrate/patterns/<slug>.md", "sha256": "sha256:<HASH>", "bytes": 0}
     ],
     "entity_count": 0,
     "topic_count": 0,
@@ -52,10 +52,10 @@
   "remote_writes": {
     "gbrain": "skipped (endpoint not exposed)",
     "supabase": "skipped (no remote write path configured)",
-    "obsidian": {"path": "/Users/rig128gb/Documents/JakeStudio/Department PAI/<dept>/<YYYY-MM-DD>.md", "status": "written"}
+    "obsidian": {"path": "$HOME/Documents/JakeStudio/Department PAI/<dept>/<YYYY-MM-DD>.md", "status": "written"}
   },
   "state_update": {
-    "path": "/Users/rig128gb/.rig/departments/<dept>/goals/_state.json",
+    "path": "$HOME/.rig/departments/<dept>/goals/_state.json",
     "sha256": "sha256:<HASH>",
     "today_count": 0,
     "entities_written": 0,

@@ -121,10 +121,10 @@ in the narrowest correct type.
 For each new technique, write the asset to its canonical RIG path:
 
 ```
-SKILL.md  →  /Users/rig128gb/.hermes/skills/<slug>.md
-harness  →  /Users/rig128gb/.jake/goal-harnesses/<slug>.md
-doctrine  → /Users/rig128gb/.rig/agent-doctrine/<cat>/<slug>.md
-L10 rule → /Users/rig128gb/rig-l10/rules/<slug>.toml
+SKILL.md  →  $HOME/.hermes/skills/<slug>.md
+harness  →  $HOME/.jake/goal-harnesses/<slug>.md
+doctrine  → $HOME/.rig/agent-doctrine/<cat>/<slug>.md
+L10 rule → $HOME/rig-l10/rules/<slug>.toml
 ```
 
 Every new asset includes frontmatter that cites the source URL +

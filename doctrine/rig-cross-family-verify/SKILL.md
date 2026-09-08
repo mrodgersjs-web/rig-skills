@@ -40,7 +40,7 @@ or `rig-stress-test` — produces findings; this skill verifies them.
 - An honest-completion framework in place (ProofPacket shape)
 - Access to at least 2 distinct AI model families (Opus, Sonnet, minimax,
   Llama, etc.) — different providers if possible
-- A hermes `pi` binary at `/Users/rig128gb/.hermes/bin/pi` (not the
+- A hermes `pi` binary at `$HOME/.hermes/bin/pi` (not the
   Node-based one at `.hermes/node/bin/pi`)
 </prerequisites>
 

@@ -24,28 +24,28 @@ Repeatable workflow for upgrading any named RIG department agent from a role/per
 ## Phase 1: Assessment (load all canonical sources in parallel)
 
 ### Required reads — batch these in a single turn
-1. `/Users/rig128gb/.rig/agent-doctrine/RIG_AGENT_STANDARDS_DOCTRINE.md`
-2. `/Users/rig128gb/.rig/agent-doctrine/RIG_DEPARTMENT_PAI_SUBSTRATE.md`
-3. Agent vault README: `/Users/rig128gb/Documents/JakeStudio/Agent Vaults/<agent>/README.md`
+1. `$HOME/.rig/agent-doctrine/RIG_AGENT_STANDARDS_DOCTRINE.md`
+2. `$HOME/.rig/agent-doctrine/RIG_DEPARTMENT_PAI_SUBSTRATE.md`
+3. Agent vault README: `$HOME/Documents/JakeStudio/Agent Vaults/<agent>/README.md`
 4. Agent vault `Inputs Required.md`
 5. Agent vault `Great Output Examples.md`
 6. Agent vault `Work Ledger.md`
-7. `/Users/rig128gb/.jake/l8/jobs.yaml`
-8. `/Users/rig128gb/.jake/l8/capabilities.yaml`
+7. `$HOME/.jake/l8/jobs.yaml`
+8. `$HOME/.jake/l8/capabilities.yaml`
 
 ### Required verification commands — batch these
 ```bash
-/Users/rig128gb/.rig/bin/rig-department-pai show <agent_id> --format json
-/Users/rig128gb/.rig/bin/rig-department-pai doctor --format json
-/Users/rig128gb/.rig/bin/rig-agent-standards status
-cat /Users/rig128gb/.rig/meta-harness/registries/quality_catalog.json | python3 -c "import sys,json; [print(p['id']) for p in json.load(sys.stdin).get('profiles',[])]"
-cat /Users/rig128gb/.rig/meta-harness/registries/department_pai_agents.json
+$HOME/.rig/bin/rig-department-pai show <agent_id> --format json
+$HOME/.rig/bin/rig-department-pai doctor --format json
+$HOME/.rig/bin/rig-agent-standards status
+cat $HOME/.rig/meta-harness/registries/quality_catalog.json | python3 -c "import sys,json; [print(p['id']) for p in json.load(sys.stdin).get('profiles',[])]"
+cat $HOME/.rig/meta-harness/registries/department_pai_agents.json
 ```
 
 ### Runtime surface inspection
 Read the Hermes agent file:
 ```bash
-/Users/rig128gb/.hermes/agents/jtbd/<agent>-agent.md
+$HOME/.hermes/agents/jtbd/<agent>-agent.md
 ```
 
 ### Gap assessment table
@@ -95,9 +95,9 @@ For 7+ artifacts, use `delegate_task` batch mode (up to 3 concurrent):
 
 ### Required verification commands
 ```bash
-/Users/rig128gb/.rig/bin/rig-department-pai show <agent_id> --format json
-/Users/rig128gb/.rig/bin/rig-department-pai doctor --format json
-/Users/rig128gb/.rig/bin/rig-agent-standards status
+$HOME/.rig/bin/rig-department-pai show <agent_id> --format json
+$HOME/.rig/bin/rig-department-pai doctor --format json
+$HOME/.rig/bin/rig-agent-standards status
 ```
 
 ### Artifact verification

@@ -83,7 +83,7 @@ When the cycle is idle, the proof file is shorter but carries the same top-level
   "fallback": {
     "lan_status": "reachable_but_model_missing_35b_then_capable_with_9b",
     "decision": "no inference performed this cycle",
-    "doc_link": "/Users/rig128gb/.rig/agent-doctrine/RIG_GLOBAL_AGENT_POLICY.md"
+    "doc_link": "$HOME/.rig/agent-doctrine/RIG_GLOBAL_AGENT_POLICY.md"
   },
 
   "docker_health": {

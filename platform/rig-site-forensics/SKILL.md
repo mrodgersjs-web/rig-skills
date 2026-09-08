@@ -290,7 +290,7 @@ curl --tlsv1.3 -I https://<domain>/ 2>&1 | head -5
 browser_navigate(url="https://<domain>/some/asset.png")
 
 # Use Python with requests (different SSL backend)
-/Users/rig128gb/.hermes/hermes-agent/venv/bin/python3 -c "
+$HOME/.hermes/hermes-agent/venv/bin/python3 -c "
 import requests
 r = requests.get('https://<domain>/path', timeout=15, headers={'User-Agent':'Mozilla/5.0'})
 print(r.status_code, r.headers.get('content-type'))

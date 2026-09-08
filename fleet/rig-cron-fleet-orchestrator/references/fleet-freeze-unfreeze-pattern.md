@@ -240,7 +240,7 @@ Services can re-enable through multiple restart paths:
 
 ## Proof Packet Structure for Freeze/Unfreeze
 
-Save to `/Users/rig128gb/Desktop/proof-packet-YYYY-MM-DD/`:
+Save to `$HOME/Desktop/proof-packet-YYYY-MM-DD/`:
 
 ```
 proof-packet-YYYY-MM-DD/

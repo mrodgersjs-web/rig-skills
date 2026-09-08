@@ -87,7 +87,7 @@ When analyzing a transcript, classify each extracted pattern:
 **Trigger:** A self-evolving, measurable, or algorithmic pattern.
 **Examples:** "Confidence calibration engine", "Pattern mining algorithm",
 "Automated quality scoring system"
-**Store to:** `/Users/rig128gb/rig-l10/src/{module_name}/`
+**Store to:** `$HOME/rig-l10/src/{module_name}/`
 **Template:** templates/l10-module-template.md
 
 ### → Cross-reference (doctrine note)

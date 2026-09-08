@@ -41,7 +41,7 @@ All scripts are `chmod +x` and tested. 28 images generated successfully across i
 | Setting | Value |
 |---------|-------|
 | Account | [REDACTED-EMAIL] (Team plan) |
-| CLI Path | `/Users/rig128gb/.hermes/node/bin/higgsfield` |
+| CLI Path | `$HOME/.hermes/node/bin/higgsfield` |
 | Brand Kit ID | `59e28f28-d23b-44b7-841f-6acb99db6481` |
 | Primary Model | `nano_banana_2` (Nano Banana Pro, 2K) |
 | Layout Model | `marketing_studio_image` (Marketing Studio) |

@@ -61,9 +61,9 @@ Three different cron IDs, three different `provider` fields preferred, three dif
 
 When Paperclip's API server crashed mid-sprint, the **only** thing that held was the local JSON proof files. **Always** persist:
 
-- Per-cron proof: `/Users/rig128gb/.rig/state/{cron}-proof.json`
-- Per-cycle sprint proof: `/Users/rig128gb/.rig/state/{sprint}-cycle-{N}.json`
-- Per-dept substrate index: `/Users/rig128gb/.rig/departments/_REGISTRY.py`
+- Per-cron proof: `$HOME/.rig/state/{cron}-proof.json`
+- Per-cycle sprint proof: `$HOME/.rig/state/{sprint}-cycle-{N}.json`
+- Per-dept substrate index: `$HOME/.rig/departments/_REGISTRY.py`
 
 Live dashboards are view surfaces. Disk is truth.
 
@@ -145,7 +145,7 @@ See `references/staged-output-idempotency.md` for the full recipe and a worked e
 
 For self-healing monitors that detect M2 provider drift: `hermes cron list` shows bordered-box text with id, name, schedule, next_run_at, last_run_at, last_status only. **`--format json` is rejected** with `unrecognized arguments`. **There is no `hermes cron status <id>`** — positional IDs raise `unrecognized arguments`.
 
-The source of truth is `/Users/rig128gb/.hermes/cron/jobs.json` — every cron is a dict with `id, name, schedule, repeat, next_run_at, last_run_at, last_status, last_error, provider, model, prompt, origin, paused_at, no_agent, ...`.
+The source of truth is `$HOME/.hermes/cron/jobs.json` — every cron is a dict with `id, name, schedule, repeat, next_run_at, last_run_at, last_status, last_error, provider, model, prompt, origin, paused_at, no_agent, ...`.
 
 Read jobs.json directly to detect drift, prompt shape, origin (Telegram chat_id), and last_error. See `references/self-healing-monitor-cron.md` §"Cron state inspection — the jobs.json contract" for the read script and the `data.get("jobs", data if isinstance(data, list) else [])` defensive pattern.
 

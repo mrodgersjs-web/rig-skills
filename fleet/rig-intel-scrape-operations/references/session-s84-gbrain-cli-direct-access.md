@@ -11,8 +11,8 @@ Previous sessions (S78, S83) used psycopg2 or psql for direct GBrain access when
 ### GBrain CLI Commands Used
 
 ```python
-BUN = "/Users/rig128gb/.bun/bin/bun"
-GBRAIN = "/Users/rig128gb/.bun/bin/gbrain"
+BUN = "$HOME/.bun/bin/bun"
+GBRAIN = "$HOME/.bun/bin/gbrain"
 
 # List pages by tag — returns tab-separated lines
 # Format: slug \t type \t date \t title
@@ -89,7 +89,7 @@ Fetching 52 GBrain pages via `gbrain get` one-at-a-time in a single `execute_cod
 
 - File: `IntelPacket-CRON-IntelScrape-20260731T153702Z.json`
 - Size: 864,913 bytes (865 KB)
-- Path: `/Users/rig128gb/Documents/JakeStudio/Projects/control-plane/meta-harness/`
+- Path: `$HOME/Documents/JakeStudio/Projects/control-plane/meta-harness/`
 - Schema: `{ packet_id, generated_at, cycle, sources_scanned, tags_scanned, summary, items[] }`
 - Each item: `{ source, source_uri, slug, title, page_type, date, tags, content_hash, change_type, evidence_score, content_length, content_preview }`
 

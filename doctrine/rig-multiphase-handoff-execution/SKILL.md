@@ -10,7 +10,7 @@ The shape of work the user describes as a numbered-phase handoff (Phases 0 throu
 ## When this skill applies
 
 - User pastes a long handoff document describing a system (e.g. RIG 24/7 Founder Runtime) with explicit phases.
-- The repo path is `/Users/rig128gb/Developer/rig-intelligence` (or a child platform directory).
+- The repo path is `$HOME/Developer/rig-intelligence` (or a child platform directory).
 - The handoff mentions typed contracts, durable state, fleet/workers, services (launchd / systemd / containers), and an acceptance test checklist.
 
 ## The seven-phase spine (canonical pattern)
@@ -35,15 +35,15 @@ Pushing to `Rodgers-Intelligence-Group/rig-intelligence` hits **two gates** that
 Run before writing any code:
 
 ```bash
-/Users/rig128gb/.rig/bin/rig-repo-guard check \
-  "/Users/rig128gb/Developer/rig-intelligence/platform/<area>"
+$HOME/.rig/bin/rig-repo-guard check \
+  "$HOME/Developer/rig-intelligence/platform/<area>"
 ```
 
 Status `ALLOW` means the path is in `registry/workstation-repositories.json`. If `BLOCK`, **stop and ask Mike** - placement is a Mike decision.
 
 ### Gate 2 - `knowledge-context-hook` (pre-commit receipt)
 
-`core.hooksPath = /Users/rig128gb/.rig/github-steward/hooks` is set in `~/.gitconfig`. The `pre-commit` script runs:
+`core.hooksPath = $HOME/.rig/github-steward/hooks` is set in `~/.gitconfig`. The `pre-commit` script runs:
 
 ```python
 platform/knowledge-context-hook/rig_knowledge_hook.py verify-receipt \

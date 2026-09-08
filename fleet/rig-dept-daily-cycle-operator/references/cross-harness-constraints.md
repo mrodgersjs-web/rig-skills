@@ -23,7 +23,7 @@ The pattern key is `tirith:pipe_to_interpreter` and the response is `{"status":"
 
 (a) **Use `jq FILE 'FILTER'` with file as a positional arg** (no `cat` upstream, no pipe to interpreter):
 ```bash
-jq '.entities | length' /Users/rig128gb/.rig/state/<file>.json
+jq '.entities | length' $HOME/.rig/state/<file>.json
 ```
 
 (b) **Use `python3 -c "..."` with single-arg inline script** (no pipe, no heredoc):

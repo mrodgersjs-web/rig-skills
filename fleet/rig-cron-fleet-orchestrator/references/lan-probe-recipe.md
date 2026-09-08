@@ -39,12 +39,12 @@ for host in live:
 
 ## Save the fleet map
 
-Write the result to `/Users/rig128gb/.rig/state/fleet-map.json` so every cron scheduler + verifier can read it without re-probing.
+Write the result to `$HOME/.rig/state/fleet-map.json` so every cron scheduler + verifier can read it without re-probing.
 
 ```python
 import json
 from pathlib import Path
-Path("/Users/rig128gb/.rig/state/fleet-map.json").write_text(
+Path("$HOME/.rig/state/fleet-map.json").write_text(
     json.dumps({"nodes": live, "scanned_at": iso_now()}, indent=2))
 ```
 

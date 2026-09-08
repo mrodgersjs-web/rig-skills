@@ -585,7 +585,7 @@ Returns `rig.context-packet.v1` schema with `matches` (verified patterns with `s
 
 **Successful invocation pattern (confirmed S89, 2026-08-02):** When `which rig-knowledge` returns empty, the binary IS installed at `~/bin/rig-knowledge` but not on the cron PATH. Fix:
 ```bash
-export PATH="/Users/rig128gb/bin:/Users/rig128gb/.bun/bin:$PATH"
+export PATH="$HOME/bin:$HOME/.bun/bin:$PATH"
 rig-knowledge match --repo "$PWD" --task "<task>" --limit 5 --format json
 ```
 This successfully returned verified Pattern Library context packets (score 3, status: verified) in S89. The binary requires bun (`~/.bun/bin/bun`) as its interpreter (`#!/usr/bin/env bun`). Both `~/bin` (for the binary) and `~/.bun/bin` (for the bun runtime) must be on PATH.

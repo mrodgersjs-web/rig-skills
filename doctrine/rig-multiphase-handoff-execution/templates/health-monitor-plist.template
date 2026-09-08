@@ -36,7 +36,7 @@
     <key>EnvironmentVariables</key>
     <dict>
         <key>PATH</key>
-        <string>__RUNTIME_DIR__/.venv/bin:/Users/rig128gb/.local/bin:/usr/local/bin:/usr/bin:/bin</string>
+        <string>__RUNTIME_DIR__/.venv/bin:$HOME/.local/bin:/usr/local/bin:/usr/bin:/bin</string>
         <key>PYTHONUNBUFFERED</key>
         <string>1</string>
     </dict>
@@ -56,10 +56,10 @@
     <integer>10</integer>
 
     <key>StandardOutPath</key>
-    <string>/Users/rig128gb/.rig/__AREA__/logs/health-monitor.out.log</string>
+    <string>$HOME/.rig/__AREA__/logs/health-monitor.out.log</string>
 
     <key>StandardErrorPath</key>
-    <string>/Users/rig128gb/.rig/__AREA__/logs/health-monitor.err.log</string>
+    <string>$HOME/.rig/__AREA__/logs/health-monitor.err.log</string>
 
     <key>ProcessType</key>
     <string>Background</string>

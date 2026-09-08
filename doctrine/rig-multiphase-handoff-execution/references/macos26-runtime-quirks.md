@@ -9,7 +9,7 @@ These came up while running the founder-runtime on a macOS 26.5.1 control plane.
 ```bash
 $ launchctl list com.rig.founder-worker.rig-control-128gb
 {
-	"StandardOutPath" = "/Users/rig128gb/.rig/founder-runtime/logs/worker.rig-control-128gb.out.log";
+	"StandardOutPath" = "$HOME/.rig/founder-runtime/logs/worker.rig-control-128gb.out.log";
 	"LimitLoadToSessionType" = "Aqua";
 	...
 }
@@ -112,7 +112,7 @@ When you write a launchd plist that calls `.venv/bin/python`, the plist needs `P
 ```xml
 <key>ProgramArguments</key>
 <array>
-    <string>/Users/rig128gb/Developer/rig-intelligence/platform/founder-runtime/.venv/bin/python</string>
+    <string>$HOME/Developer/rig-intelligence/platform/founder-runtime/.venv/bin/python</string>
     <string>-m</string>
     <string>founder_runtime.worker</string>
     <string>--node-id</string>
@@ -125,7 +125,7 @@ Or wrap with a small shell script in `.venv/bin/<name>` and call that:
 ```xml
 <key>ProgramArguments</key>
 <array>
-    <string>/Users/rig128gb/Developer/rig-intelligence/platform/founder-runtime/.venv/bin/<entrypoint></string>
+    <string>$HOME/Developer/rig-intelligence/platform/founder-runtime/.venv/bin/<entrypoint></string>
     <string>--node-id</string>
     <string>rig-control-128gb</string>
 </array>

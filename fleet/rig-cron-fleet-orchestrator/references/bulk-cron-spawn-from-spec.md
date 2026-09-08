@@ -38,8 +38,8 @@ import json
 import subprocess
 from pathlib import Path
 
-SPEC = Path("/Users/rig128gb/.rig/departments/_kanban/scrapers_spec.json")
-JOBS = Path("/Users/rig128gb/.hermes/cron/jobs.json")
+SPEC = Path("$HOME/.rig/departments/_kanban/scrapers_spec.json")
+JOBS = Path("$HOME/.hermes/cron/jobs.json")
 
 data = json.loads(SPEC.read_text())
 scrapers = data["scrapers"]            # or data itself if it's already a list
@@ -136,10 +136,10 @@ After spawning, confirm the new crons are properly pinned:
 ```bash
 # All crons named JAKE-SCRAPE-* with their effective model/provider
 jq '.jobs[] | select(.name | test("JAKE-SCRAPE")) | {name, model, provider, schedule_display, enabled}' \
-   /Users/rig128gb/.hermes/cron/jobs.json
+   $HOME/.hermes/cron/jobs.json
 
 # Total cron count delta (before/after)
-jq '.jobs | length' /Users/rig128gb/.hermes/cron/jobs.json
+jq '.jobs | length' $HOME/.hermes/cron/jobs.json
 ```
 
 If the count went up by N and every spec's name appears once with the expected

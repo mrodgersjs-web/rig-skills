@@ -76,7 +76,7 @@ payload = {
     "gate_d_status": "STAGED",
 }
 
-path = Path("/Users/rig128gb/.hermes/jake/ralf-department/proof/daily/comments_am_2026-07-07.json")
+path = Path("$HOME/.hermes/jake/ralf-department/proof/daily/comments_am_2026-07-07.json")
 path.parent.mkdir(parents=True, exist_ok=True)
 
 # Write with explicit ensure_ascii=False so multi-byte content survives

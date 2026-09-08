@@ -25,21 +25,21 @@ pgrep -fla 'gbrain.*serve' | head -5
 lsof -i :<probe_port>
 ```
 
-**If bun is alive but no HTTP:** GBrain's gateway is not exposing a public endpoint. Use `gbrain query` CLI instead (`/Users/rig128gb/.bun/bin/gbrain query --tag gtm --limit 50 --format json`). If CLI also fails, report as `SERVICE_REACHABLE_NO_HTTP (evidence_score=0.3)`.
+**If bun is alive but no HTTP:** GBrain's gateway is not exposing a public endpoint. Use `gbrain query` CLI instead (`$HOME/.bun/bin/gbrain query --tag gtm --limit 50 --format json`). If CLI also fails, report as `SERVICE_REACHABLE_NO_HTTP (evidence_score=0.3)`.
 
 ### 2. rig-knowledge CLI Existence & Path
 
 ```bash
 which rig-knowledge 2>/dev/null || echo "MISSING"
-ls -la /Users/rig128gb/.rig/bin/rig-knowledge* 2>/dev/null || echo "NO_BINARY"
+ls -la $HOME/.rig/bin/rig-knowledge* 2>/dev/null || echo "NO_BINARY"
 ```
 
-Expected paths (try in order): `~/.rig/bin/rig-knowledge`, `/Users/rig128gb/.rig/bin/rig-knowledge`. The pipeline variant is `rig-knowledge-pipeline` — different tool, separate skill (`rig-knowledge-context`). If neither exists, note the gap and fall back to manual vault scan.
+Expected paths (try in order): `~/.rig/bin/rig-knowledge`, `$HOME/.rig/bin/rig-knowledge`. The pipeline variant is `rig-knowledge-pipeline` — different tool, separate skill (`rig-knowledge-context`). If neither exists, note the gap and fall back to manual vault scan.
 
 ### 3. Obsidian Vault Accessibility
 
 ```bash
-find /Users/rig128gb/Documents/JakeStudio -name "*.md" -mtime -7 2>/dev/null | head -50
+find $HOME/Documents/JakeStudio -name "*.md" -mtime -7 2>/dev/null | head -50
 ```
 
 If `find` returns empty AND Obsidian is running (`pgrep -f "Obsidian.app"`), the cron process context may not have access to JakeStudio paths. Report as `NO_FILES_IN_LAST_7D (evidence_score=0.1)`.
@@ -48,7 +48,7 @@ If `find` returns empty AND Obsidian is running (`pgrep -f "Obsidian.app"`), the
 
 ```bash
 test -d <meta-harness-or-task-dir> && echo "EXISTS" || echo "MISSING"
-ls </Users/rig128gb/Documents/JakeStudio/Projects/> 2>&1 | head -5
+ls <$HOME/Documents/JakeStudio/Projects/> 2>&1 | head -5
 ```
 
 If the repo was deleted in a prior cleanup cycle, produce `DESTROYED_OR_MISSING (evidence_score=0.0)` and recommend path recovery or cron target update.

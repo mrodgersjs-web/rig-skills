@@ -121,7 +121,7 @@ the proposal here; activation is a separate step requiring skill-spec ratificati
 2. ...
 3. ...
 
-**Blocker to schedule:** {what needs Darius / dept-lead sign-off before activation; e.g. "skill specs at /Users/rig128gb/.rig/departments/{dept}/skills/proposed/{name}/SKILL.md need ratification"}
+**Blocker to schedule:** {what needs Darius / dept-lead sign-off before activation; e.g. "skill specs at $HOME/.rig/departments/{dept}/skills/proposed/{name}/SKILL.md need ratification"}
 
 ---
 

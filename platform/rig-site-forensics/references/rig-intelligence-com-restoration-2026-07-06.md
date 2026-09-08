@@ -32,8 +32,8 @@ find ~/Developer -maxdepth 4 -name "project.json" -path "*/.vercel/*"
 ```
 
 Found two candidates:
-- `/Users/rig128gb/Developer/rig-os-site/.vercel/project.json` → `rig-os-site` (prj_fBhcHFZWnEIjmoAAgcTDbcWnVAeO) — older site
-- `/Users/rig128gb/Developer/rig-design-studio/site-v2/.vercel/project.json` → `site-v2` (prj_A60q76PLNwVTi0OUYimBk9n1ui33) — current site
+- `$HOME/Developer/rig-os-site/.vercel/project.json` → `rig-os-site` (prj_fBhcHFZWnEIjmoAAgcTDbcWnVAeO) — older site
+- `$HOME/Developer/rig-design-studio/site-v2/.vercel/project.json` → `site-v2` (prj_A60q76PLNwVTi0OUYimBk9n1ui33) — current site
 
 ```bash
 vercel inspect rodgersintelligence.com -F json | grep -E '"id"|"createdAt"|"aliases"'
@@ -47,7 +47,7 @@ Output: `id: dpl_HYhpxSTVLYjewFPxgZdxf1zF9xSn`, `createdAt: 1783376869565` (= 20
 
 ```bash
 md5 /tmp/rodgers-current.html \
-    /Users/rig128gb/Developer/rig-design-studio/site-v2/index.html
+    $HOME/Developer/rig-design-studio/site-v2/index.html
 # Both: a8b8cdbf0bce4b3c2d7d04a832b45a10 — MATCH
 ```
 
@@ -93,7 +93,7 @@ vercel.json rewrites:
 cd ~/Developer/rig-design-studio && git log --oneline -10 -- site-v2/
 ```
 
-Last commit: `f6ff1de` "fix(site): scrub remaining Substack + inert Calendly refs -> email" (2026-06-22). The June 30 brand-identity session (saved in `/Users/rig128gb/Documents/JakeStudio/Projects/LinkedIn-Company-Page-Overhaul/Phase1-*.md`) explicitly treated the live noir site as the source of truth — so the noir design is what Mike means by "the right one."
+Last commit: `f6ff1de` "fix(site): scrub remaining Substack + inert Calendly refs -> email" (2026-06-22). The June 30 brand-identity session (saved in `$HOME/Documents/JakeStudio/Projects/LinkedIn-Company-Page-Overhaul/Phase1-*.md`) explicitly treated the live noir site as the source of truth — so the noir design is what Mike means by "the right one."
 
 ```bash
 git diff HEAD -- site-v2/index.html | head -50
@@ -108,7 +108,7 @@ Today's uncommitted edits ADDED: trust bar, dominant CTA, Schema.org JSON-LD, OG
 ### 7. The `.prior*.html` trap
 
 ```bash
-ls /Users/rig128gb/Developer/rig-design-studio/site-v2/meet.prior*.html
+ls $HOME/Developer/rig-design-studio/site-v2/meet.prior*.html
 # meet.prior.html, prior2.html, ... prior6.html
 ```
 
@@ -170,5 +170,5 @@ Held for Mike's typed APPROVE per Jake PAI Gate-D. **No deploy executed.**
 - Vercel team: `team_4uvtoN6Mzf0JCzyR3ySQvXc5` (michael-rodgers-projects-e4209a00)
 - Production deployment (at time of investigation): `dpl_HYhpxSTVLYjewFPxgZdxf1zF9xSn`
 - Last committed state of source: `f6ff1de` "fix(site): scrub remaining Substack + inert Calendly refs -> email" (2026-06-22)
-- Local source path: `/Users/rig128gb/Developer/rig-design-studio/site-v2/`
+- Local source path: `$HOME/Developer/rig-design-studio/site-v2/`
 - Local working-tree HEAD: 467 files uncommitted since `f6ff1de`

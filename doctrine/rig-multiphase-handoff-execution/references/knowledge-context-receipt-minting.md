@@ -80,7 +80,7 @@ ts = datetime.now(timezone.utc)
 stamp = ts.strftime("%Y%m%dT%H%M%S%fZ")
 agent = "hermes"
 session = os.environ.get("HERMES_SESSION_ID", "minimax-m3")
-repo = "/Users/rig128gb/Developer/rig-intelligence"
+repo = "$HOME/Developer/rig-intelligence"
 task = "<one-line description of what you're committing>"
 
 packet = {
@@ -121,9 +121,9 @@ receipt = {
 
 ```bash
 /Applications/Xcode.app/Contents/Developer/usr/bin/python3 \
-  /Users/rig128gb/Developer/rig-intelligence/platform/knowledge-context-hook/rig_knowledge_hook.py \
+  $HOME/Developer/rig-intelligence/platform/knowledge-context-hook/rig_knowledge_hook.py \
   verify-receipt \
-  --repo /Users/rig128gb/Developer/rig-intelligence \
+  --repo $HOME/Developer/rig-intelligence \
   --max-age 14400
 ```
 

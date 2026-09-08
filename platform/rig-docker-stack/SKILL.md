@@ -18,13 +18,13 @@ triggers:
 ## Start Colima
 ```bash
 colima start
-export DOCKER_HOST=unix:///Users/rig128gb/.colima/default/docker.sock
+export DOCKER_HOST=unix://$HOME/.colima/default/docker.sock
 ```
 
 ## Start All Services
 ```bash
-cd /Users/rig128gb/.hermes/jake/missions/ralph-nova-week2-2026-07-08/docker-stack
-export DOCKER_HOST=unix:///Users/rig128gb/.colima/default/docker.sock
+cd $HOME/.hermes/jake/missions/ralph-nova-week2-2026-07-08/docker-stack
+export DOCKER_HOST=unix://$HOME/.colima/default/docker.sock
 docker compose up -d
 ```
 
@@ -53,7 +53,7 @@ curl -s http://localhost:3000/api/public/health
 - If container fails to start, check: `docker logs rig-langfuse`
 
 ## docker-compose.yml Location
-`/Users/rig128gb/.hermes/jake/missions/ralph-nova-week2-2026-07-08/docker-stack/docker-compose.yml`
+`$HOME/.hermes/jake/missions/ralph-nova-week2-2026-07-08/docker-stack/docker-compose.yml`
 
 ## Stop All
 ```bash

@@ -60,8 +60,8 @@ Topics: 40 (30 GitHub-derived + 10 RIG-derived patterns)
 Freshness: 100% (this-cycle-only writes)
 Verifier: PASS (tier-3, north_star=gross_margin_pct_x_runway_months)
 Blocklist: PASS (strict word-boundary grep, 0 matches)
-Proof: /Users/rig128gb/.rig/departments/finance/proof/proofpacket-cycle-1783387806.json
-Obsidian: /Users/rig128gb/Documents/JakeStudio/Department PAI/finance/cycle-1783387806-finance-daily.md
+Proof: $HOME/.rig/departments/finance/proof/proofpacket-cycle-1783387806.json
+Obsidian: $HOME/Documents/JakeStudio/Department PAI/finance/cycle-1783387806-finance-daily.md
 ```
 
 ## Pitfalls specific to finance
